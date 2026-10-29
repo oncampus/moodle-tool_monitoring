@@ -47,11 +47,12 @@ $monitoringcategory = new admin_category(
 $ADMIN->add('tools', $monitoringcategory);
 
 // Create a link to the metrics overview page and add it as the first item in the monitoring category.
+// Positional arguments, because Moodle 5.3 renamed the `$req_capability` parameter to `$requiredcapability`.
 $overviewlink = new admin_externalpage(
-    name: 'tool_monitoring_overview',
-    visiblename: new lang_string('settings:metrics_overview', 'tool_monitoring'),
-    url: new moodle_url('/admin/tool/monitoring'),
-    req_capability: 'tool/monitoring:manage_metrics',
+    'tool_monitoring_overview',
+    new lang_string('settings:metrics_overview', 'tool_monitoring'),
+    new moodle_url('/admin/tool/monitoring'),
+    'tool/monitoring:manage_metrics',
 );
 $ADMIN->add('tool_monitoring', $overviewlink);
 
